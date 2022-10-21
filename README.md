@@ -1,6 +1,7 @@
 # Baymax
 ## Progress status 1: 
- Algorithms used: decision tree, random forest, naive bayes and knn2.
+ Algorithms used: decision tree, random forest, naive bayes and knn 
+
  Update Table
  
  | Progress areas |  status  |
