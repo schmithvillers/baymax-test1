@@ -19,10 +19,10 @@ New feature suggestions:
 
 
 ## Progress status 2: 
- Algorithms used: decision tree, random forest, naive bayes and knn 
- Chatbot code added
- *critical* chatbot not responding properly, maybe issue with neural net
- chatbot code not running on computer, had to use notebook
+ Algorithms used: decision tree, random forest, naive bayes and knn   
+ Chatbot code added  
+ *critical* chatbot not responding properly, maybe issue with neural net  
+ chatbot code not running on computer, had to use notebook  
 
  OUTPUT FOR PREDICTION MODELS
  ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(63).png)
