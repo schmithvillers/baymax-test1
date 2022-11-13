@@ -48,7 +48,6 @@ disease=['Fungal infection', 'Allergy', 'GERD', 'Chronic cholestasis',
 l2=[]
 for i in range(0,len(l1)):
     l2.append(0)
-print(l2)
 
 #Reading the training .csv file
 df=pd.read_csv("training.csv")
@@ -73,8 +72,8 @@ def plotPerColumnDistribution(df1, nGraphShown, nGraphPerRow):
     df1 = df1[[col for col in df if nunique[col] > 1 and nunique[col] < 50]] # For displaying purposes, pick columns that have between 1 and 50 unique values
     nRow, nCol = df1.shape
     columnNames = list(df1)
-    nGraphRow = (nCol + nGraphPerRow - 1) / nGraphPerRow
-    plt.figure(num = None, figsize = (6 * nGraphPerRow, 8 * nGraphRow), dpi = 80, facecolor = 'w', edgecolor = 'k')
+    nGraphRow = int((nCol + nGraphPerRow - 1) / nGraphPerRow)
+    plt.figure(num = None, figsize = (6 * nGraphPerRow, 8 * nGraphRow), dpi = 70, facecolor = 'w', edgecolor = 'k')
     for i in range(min(nCol, nGraphShown)):
         plt.subplot(nGraphRow, nGraphPerRow, i + 1)
         columnDf = df.iloc[:, i]
@@ -89,7 +88,7 @@ def plotPerColumnDistribution(df1, nGraphShown, nGraphPerRow):
     plt.tight_layout(pad = 1.0, w_pad = 1.0, h_pad = 1.0)
     plt.show()
 
-    def plotScatterMatrix(df1, plotSize, textSize):
+def plotScatterMatrix(df1, plotSize, textSize):
     df1 = df1.select_dtypes(include =[np.number]) # keep only numerical columns
     # Remove rows and columns that would lead to df being singular
     df1 = df1.dropna('columns')
@@ -104,10 +103,14 @@ def plotPerColumnDistribution(df1, nGraphShown, nGraphPerRow):
         ax[i, j].annotate('Corr. coef = %.3f' % corrs[i, j], (0.8, 0.2), xycoords='axes fraction', ha='center', va='center', size=textSize)
     plt.suptitle('Scatter and Density Plot')
     plt.show()
+plotPerColumnDistribution(df, 10, 5)
 
-    plotPerColumnDistribution(df, 10, 5)
-
-    #Reading the  testing.csv file
+X= df[l1]
+y = df[["prognosis"]]
+np.ravel(y)
+print(X)
+print(y)
+#Reading the  testing.csv file
 tr=pd.read_csv("testing.csv")
 
 #Using inbuilt function replace in pandas for replacing the values
@@ -175,7 +178,7 @@ def DecisionTree():
         if sym:
             root.mainloop()
     else:
-        from sklearn import tree
+        from sklearn import tree    
 
         clf3 = tree.DecisionTreeClassifier() 
         clf3 = clf3.fit(X,y)
@@ -443,8 +446,8 @@ def Reset():
     NameEn.delete(first=0,last=100)
     pred1.set(" ")
     pred2.set(" ")
-    pred3.set(" ")
-    pred4.set(" ")
+    # pred3.set(" ")
+    # pred4.set(" ")
     try:
         prev_win.destroy()
         prev_win=None
@@ -458,48 +461,48 @@ def Exit():
         root.destroy()
         exit()
 #Headings for the GUI written at the top of GUI
-w2 = Label(root, justify=LEFT, text="Disease Predictor using Machine Learning", fg="Red", bg="Ivory")
-w2.config(font=("Times",30,"bold italic"))
+w2 = Label(root, justify=LEFT, text="Disease Predictor using Machine Learning", fg="Black", bg="Ivory")
+w2.config(font=("Arial",20,"bold"))
 w2.grid(row=1, column=0, columnspan=2, padx=100)
 #Label for the name
-NameLb = Label(root, text="Name of the Patient *", fg="Red", bg="Ivory")
-NameLb.config(font=("Times",15,"bold italic"))
+NameLb = Label(root, text="Name of the Patient *", fg="Black", bg="Ivory")
+NameLb.config(font=("Arial",15,"bold"))
 NameLb.grid(row=6, column=0, pady=15, sticky=W)
 #Creating Labels for the symtoms
 S1Lb = Label(root, text="Symptom 1 *", fg="Black", bg="Ivory")
-S1Lb.config(font=("Times",15,"bold italic"))
+S1Lb.config(font=("Arial",15,"bold"))
 S1Lb.grid(row=7, column=0, pady=10, sticky=W)
 
 S2Lb = Label(root, text="Symptom 2 *", fg="Black", bg="Ivory")
-S2Lb.config(font=("Times",15,"bold italic"))
+S2Lb.config(font=("Arial",15,"bold"))
 S2Lb.grid(row=8, column=0, pady=10, sticky=W)
 
 S3Lb = Label(root, text="Symptom 3", fg="Black",bg="Ivory")
-S3Lb.config(font=("Times",15,"bold italic"))
+S3Lb.config(font=("Arial",15,"bold"))
 S3Lb.grid(row=9, column=0, pady=10, sticky=W)
 
 S4Lb = Label(root, text="Symptom 4", fg="Black", bg="Ivory")
-S4Lb.config(font=("Times",15,"bold italic"))
+S4Lb.config(font=("Arial",15,"bold"))
 S4Lb.grid(row=10, column=0, pady=10, sticky=W)
 
 S5Lb = Label(root, text="Symptom 5", fg="Black", bg="Ivory")
-S5Lb.config(font=("Times",15,"bold italic"))
+S5Lb.config(font=("Arial",15,"bold"))
 S5Lb.grid(row=11, column=0, pady=10, sticky=W)
 #Labels for the different algorithms
-lrLb = Label(root, text="DecisionTree", fg="white", bg="red", width = 20)
-lrLb.config(font=("Times",15,"bold italic"))
+lrLb = Label(root, text="DecisionTree", fg="black", bg="white", width = 20)
+lrLb.config(font=("Arial",15,"bold"))
 lrLb.grid(row=15, column=0, pady=10,sticky=W)
 
-destreeLb = Label(root, text="RandomForest", fg="Red", bg="Orange", width = 20)
-destreeLb.config(font=("Times",15,"bold italic"))
+destreeLb = Label(root, text="RandomForest", fg="black", bg="white", width = 20)
+destreeLb.config(font=("Arial",15,"bold"))
 destreeLb.grid(row=17, column=0, pady=10, sticky=W)
 
-ranfLb = Label(root, text="NaiveBayes", fg="White", bg="green", width = 20)
-ranfLb.config(font=("Times",15,"bold italic"))
+ranfLb = Label(root, text="NaiveBayes", fg="black", bg="white", width = 20)
+ranfLb.config(font=("Arial",15,"bold"))
 ranfLb.grid(row=19, column=0, pady=10, sticky=W)
 
-knnLb = Label(root, text="kNearestNeighbour", fg="Red", bg="Sky Blue", width = 20)
-knnLb.config(font=("Times",15,"bold italic"))
+knnLb = Label(root, text="kNearestNeighbour", fg="black", bg="white", width = 20)
+knnLb.config(font=("Arial",15,"bold"))
 knnLb.grid(row=21, column=0, pady=10, sticky=W)
 OPTIONS = sorted(l1)
 #Taking name as input from user
@@ -522,40 +525,40 @@ S4.grid(row=10, column=1)
 S5 = OptionMenu(root, Symptom5,*OPTIONS)
 S5.grid(row=11, column=1)
 #Buttons for predicting the disease using different algorithms
-dst = Button(root, text="Prediction 1", command=DecisionTree,bg="Red",fg="yellow")
-dst.config(font=("Times",15,"bold italic"))
+dst = Button(root, text="Prediction 1", command=DecisionTree,bg="Blue",fg="White",width=15)
+dst.config(font=("Arial",13,"bold"))
 dst.grid(row=6, column=3,padx=10)
 
-rnf = Button(root, text="Prediction 2", command=randomforest,bg="Light green",fg="red")
-rnf.config(font=("Times",15,"bold italic"))
+rnf = Button(root, text="Prediction 2", command=randomforest,bg="Blue",fg="White",width=15)
+rnf.config(font=("Arial",13,"bold"))
 rnf.grid(row=7, column=3,padx=10)
 
-lr = Button(root, text="Prediction 3", command=NaiveBayes,bg="Blue",fg="white")
-lr.config(font=("Times",15,"bold italic"))
+lr = Button(root, text="Prediction 3", command=NaiveBayes,bg="Blue",fg="white",width=15)
+lr.config(font=("Arial",13,"bold"))
 lr.grid(row=8, column=3,padx=10)
 
-kn = Button(root, text="Prediction 4", command=KNN,bg="sky blue",fg="red")
-kn.config(font=("Times",15,"bold italic"))
+kn = Button(root, text="Prediction 4", command=KNN,bg="Blue",fg="White",width=15)
+kn.config(font=("Arial",13,"bold"))
 kn.grid(row=9, column=3,padx=10)
 
-rs = Button(root,text="Reset Inputs", command=Reset,bg="yellow",fg="purple",width=15)
-rs.config(font=("Times",15,"bold italic"))
+rs = Button(root,text="Reset Inputs", command=Reset,bg="White",fg="blue",width=15)
+rs.config(font=("Arial",13,"bold"))
 rs.grid(row=10,column=3,padx=10)
 
-ex = Button(root,text="Exit System", command=Exit,bg="yellow",fg="purple",width=15)
-ex.config(font=("Times",15,"bold italic"))
+ex = Button(root,text="Exit System", command=Exit,bg="white",fg="blue",width=15)
+ex.config(font=("Arial",13,"bold"))
 ex.grid(row=11,column=3,padx=10)
-#Showing the output of different aldorithms
-t1=Label(root,font=("Times",15,"bold italic"),text="Decision Tree",height=1,bg="Light green"
-         ,width=40,fg="red",textvariable=pred1,relief="sunken").grid(row=15, column=1, padx=10)
+#Showing the output of different algorithms
+t1=Label(root,font=("Arial",15,"bold"),text="Decision Tree",height=1,bg="white"
+         ,width=40,fg="blue",textvariable=pred1,relief="sunken").grid(row=15, column=1, padx=10)
 
-t2=Label(root,font=("Times",15,"bold italic"),text="Random Forest",height=1,bg="Purple"
-         ,width=40,fg="white",textvariable=pred2,relief="sunken").grid(row=17, column=1, padx=10)
+t2=Label(root,font=("Arial",15,"bold"),text="Random Forest",height=1,bg="white"
+         ,width=40,fg="blue",textvariable=pred2,relief="sunken").grid(row=17, column=1, padx=10)
 
-t3=Label(root,font=("Times",15,"bold italic"),text="Naive Bayes",height=1,bg="red"
-         ,width=40,fg="orange",textvariable=pred3,relief="sunken").grid(row=19, column=1, padx=10)
+t3=Label(root,font=("Arial",15,"bold"),text="Naive Bayes",height=1,bg="white"
+         ,width=40,fg="blue",textvariable=pred3,relief="sunken").grid(row=19, column=1, padx=10)
 
-t4=Label(root,font=("Times",15,"bold italic"),text="kNearest Neighbour",height=1,bg="Blue"
-         ,width=40,fg="yellow",textvariable=pred4,relief="sunken").grid(row=21, column=1, padx=10)
+t4=Label(root,font=("Arial",15,"bold"),text="kNearest Neighbour",height=1,bg="white"
+         ,width=40,fg="blue",textvariable=pred4,relief="sunken").grid(row=21, column=1, padx=10)
 #calling this function because the application is ready to run
 root.mainloop()
