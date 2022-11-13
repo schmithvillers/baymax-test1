@@ -25,9 +25,7 @@ New feature suggestions:
  chatbot code not running on computer, had to use notebook  
 
  OUTPUT FOR PREDICTION MODELS
- ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(63).png)
- ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(64).png)
- ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(65).png)
+ ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(63).png) ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(64).png)  ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(65).png)
  ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(69).png)
  ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(70).png)
  ![alt text](https://github.com/schmithvillers/baymax-test1/blob/main/output_pics/Screenshot%20(71).png)
